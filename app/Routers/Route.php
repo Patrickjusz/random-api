@@ -20,12 +20,15 @@ class Route
         $controller = new RandomNumberController($this->request);
         $path = $this->request->getPath();
 
-        if ($path == 'generate') {
+        switch ($path) {
+        case ($path == 'generate' && !$this->request->isHttpPost()):
             $controller->index();
-        } else if (preg_match("/retrive\/(\d+)$/i", $path)) {
+            break;
+        case (preg_match("/retrive\/(\d+)$/i", $path)):
             $id = substr($path, strrpos($path, '/') + 1);
             $controller->show($id);
-        } else {
+            break;
+        default:
             JsonResponse::error404();
         }
     }
