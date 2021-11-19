@@ -12,7 +12,7 @@ http://izzsfixdij.cfolks.pl/generate
 
 http://izzsfixdij.cfolks.pl/retrive/1
 
-## Responses
+## Responses (content-type: application/json; charset=utf-8)
 ### POST /generate (201)
 
 ![1](https://user-images.githubusercontent.com/33465063/142688945-6ff50ea5-322a-4894-851c-b63026f17534.jpg)
