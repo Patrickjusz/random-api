@@ -5,8 +5,6 @@ namespace App\Controllers;
 use App\Helpers\Request;
 use App\Controllers\Controller;
 use App\Helpers\JsonResponse;
-use App\Helpers\Response;
-use App\Helpers\ResponseInterface;
 use App\Models\RandomNumberModel;
 
 class RandomNumberController extends Controller
@@ -27,7 +25,8 @@ class RandomNumberController extends Controller
 
     public function show(int $id): JsonResponse
     {
-        $data = ['12'];
+        $randomNumber = new RandomNumberModel();
+        $data = (array)$randomNumber->getById($id);
         return new JsonResponse($data);
     }
 }
