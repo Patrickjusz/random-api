@@ -21,10 +21,10 @@ class Route
         $path = $this->request->getPath();
 
         switch ($path) {
-        case ($path == 'generate' && !$this->request->isHttpPost()):
+        case ('generate' == $path && !$this->request->isHttpPost()):
             $controller->index();
             break;
-        case (preg_match("/retrive\/(\d+)$/i", $path)):
+        case (preg_match("/retrive\/(\d+)$/i", $path) === 1):
             $id = substr($path, strrpos($path, '/') + 1);
             $controller->show($id);
             break;

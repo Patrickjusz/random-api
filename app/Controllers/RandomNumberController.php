@@ -24,7 +24,10 @@ class RandomNumberController extends Controller
 
     public function show(int $id): JsonResponse
     {
-        $data = RandomNumberModel::getById($id) ?? JsonResponse::error404();
+        $data = RandomNumberModel::getById($id);
+        if (!$data) {
+            JsonResponse::error404();
+        }
         return new JsonResponse($data, 200);
     }
 }
