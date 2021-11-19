@@ -29,6 +29,8 @@ class RandomNumberController extends Controller
     {
         $randomNumber = new RandomNumberModel();
         $data = (array)$randomNumber->getById($id);
-        return new JsonResponse($data);
+        $httpCode = !empty($data) ? 200 : 404;
+
+        return new JsonResponse($data, $httpCode);
     }
 }

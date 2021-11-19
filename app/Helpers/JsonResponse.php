@@ -11,6 +11,7 @@ class JsonResponse implements ResponseInterface
         $this->setHeaders();
         $this->setHttpCode($httpCode);
         echo json_encode($data);
+        die();
     }
 
     private function setHeaders()
