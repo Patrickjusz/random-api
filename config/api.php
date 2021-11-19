@@ -7,3 +7,8 @@ define('DATABASE_HOST_OR_FILE',  __DIR__ . '/../data/app.db');
 define('REQUEST_URL', $_GET['route'] ?? '');
 define('REQUEST_PARAM', $_POST ?? []);
 define('REQUEST_HEADERS', getallheaders() ?? []);
+
+//MIDDLEWARE
+define('MIDDLEWARE_PATH', '\App\Middlewares');
+$middlewares = ['ApiMiddleware'];
+
