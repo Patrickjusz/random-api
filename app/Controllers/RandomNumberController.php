@@ -10,7 +10,7 @@ use RandomNumber;
 
 class RandomNumberController extends Controller
 {
-    private $request;
+    private Request $request;
 
     public function __construct(Request $request)
     {
@@ -19,21 +19,13 @@ class RandomNumberController extends Controller
 
     public function index(): JsonResponse
     {
-        $randomNumber = new RandomNumberModel();
-        $data = $randomNumber->getNumberArray();
-        $data['id'] = $randomNumber->create($data['random']);
+        $data = RandomNumberModel::getNumberArray();
         return new JsonResponse($data);
     }
 
     public function show(int $id): JsonResponse
     {
-        $randomNumber = new RandomNumberModel();
-        $data = (array)$randomNumber->getById($id);
-        $httpCode = !empty($data) ? 200 : 404;
-        if (empty($data))
-        {
-            JsonResponse::error404();
-        }
+        $data = RandomNumberModel::getById($id) ?? JsonResponse::error404();
         return new JsonResponse($data, 200);
     }
 }

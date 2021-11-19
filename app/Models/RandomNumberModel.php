@@ -4,23 +4,27 @@ namespace App\Models;
 
 class RandomNumberModel
 {
-    public function getNumber(int $min = 0, $max = 999999): int
+    public static function getNumber(int $min = 0, $max = 999999): int
     {
         return RAND($min, $max);
     }
 
-    public function getNumberArray(int $min = 0, $max = 999999): array
+    public static function getNumberArray(int $min = 0, $max = 999999): array
     {
-        return ['random' => $this->getNumber($min, $max)];
+        $randomNum = self::getNumber($min, $max);
+        return [
+            'id' =>  self::create($randomNum),
+            'random' => $randomNum
+        ];
     }
 
-    public function getById(int $id)
+    public static function getById(int $id)
     {
         global $database;
         return $database->select("SELECT * FROM random_numbers WHERE id = {$id}");
     }
 
-    public function create(int $number): int
+    public static function create(int $number): int
     {
         global $database;
         return $database->insert('random_numbers', ['number' => $number]);
