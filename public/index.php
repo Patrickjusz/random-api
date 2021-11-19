@@ -23,6 +23,13 @@ switch ($requestPath) {
         //POST
         $controller->index();
         break;
+    case strpos($requestPath, 'generate') === 0:
+        //GET
+        $id = substr($requestPath, strrpos($requestPath, '/') + 1);
+        if ($id > 0) {
+            $controller->show($id);
+        }
+        break;
     case strpos($requestPath, 'retrive') === 0:
         //GET
         $id = substr($requestPath, strrpos($requestPath, '/') + 1);
