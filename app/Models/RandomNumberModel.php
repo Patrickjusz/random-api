@@ -19,4 +19,10 @@ class RandomNumberModel
         global $database;
         return $database->select("SELECT * FROM random_numbers WHERE id = {$id}");
     }
+
+    public function create(int $number): int
+    {
+        global $database;
+        return $database->insert('random_numbers', ['number' => $number]);
+    }
 }

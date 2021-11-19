@@ -31,6 +31,9 @@ switch ($requestPath) {
         }
         break;
     default:
-        throw \Exception("Bad route");
+        throw new \Exception("Bad route");
         break;
 }
+
+
+//INSERT INTO random_numbers('number') VALUES (12)

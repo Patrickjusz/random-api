@@ -6,6 +6,7 @@ use App\Helpers\Request;
 use App\Controllers\Controller;
 use App\Helpers\JsonResponse;
 use App\Models\RandomNumberModel;
+use RandomNumber;
 
 class RandomNumberController extends Controller
 {
@@ -20,6 +21,7 @@ class RandomNumberController extends Controller
     {
         $randomNumber = new RandomNumberModel();
         $data = $randomNumber->getNumberArray();
+        $data['id'] = $randomNumber->create($data['random']);
         return new JsonResponse($data);
     }
 
