@@ -8,6 +8,7 @@ use PDOException;
 class SqlLiteDriver implements DatabaseDriver
 {
     private $db;
+    private $lastInsertId = 0;
 
     public function __construct(string $filename)
     {
@@ -33,8 +34,36 @@ class SqlLiteDriver implements DatabaseDriver
         return (array)$data;
     }
 
-    public function insert()
+    public function insert(string $tableName, array $params): int
     {
-        //@TODO;
+        $this->lastInsertId = 0;
+
+        $keys = '';
+        $values = '';
+        foreach ($params as $key => $value) {
+            $keys = $key . ',';
+            $values = ":" . $key . ",";
+        }
+        $keys = rtrim($keys, ',');
+        $values = rtrim($values, ',');
+        $query = "INSERT INTO {$tableName} ($keys) VALUES ($values)";
+
+        $stmt = $this->db->prepare($query);
+        foreach ($params as $key => $value) {
+            $stmt->bindValue((':' . $key), $value);
+        }
+
+        $stmt->execute();
+        $this->lastInsertId = $this->db->lastInsertId() ?? 0;
+
+        return $stmt ? ($this->lastInsertId ?? true) : false;
+    }
+
+    /**
+     * Get the value of lastInsertId
+     */
+    public function getLastInsertId()
+    {
+        return $this->lastInsertId;
     }
 }
