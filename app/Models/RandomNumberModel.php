@@ -13,12 +13,14 @@ class RandomNumberModel
         ];
     }
 
+    //Move to separate class, for example: RandomNumberService...
     public static function getById(int $id)
     {
         global $database;
         return $database->select("SELECT * FROM random_numbers WHERE id = {$id}");
     }
 
+    //Move to separate class, for example: RandomNumberService...
     private static function create(int $number): int
     {
         global $database;
