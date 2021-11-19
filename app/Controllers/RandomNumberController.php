@@ -6,7 +6,6 @@ use App\Helpers\Request;
 use App\Controllers\Controller;
 use App\Helpers\JsonResponse;
 use App\Models\RandomNumberModel;
-use RandomNumber;
 
 class RandomNumberController extends Controller
 {

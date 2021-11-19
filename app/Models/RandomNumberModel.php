@@ -4,11 +4,6 @@ namespace App\Models;
 
 class RandomNumberModel
 {
-    public static function getNumber(int $min = 0, $max = 999999): int
-    {
-        return RAND($min, $max);
-    }
-
     public static function getNumberArray(int $min = 0, $max = 999999): array
     {
         $randomNum = self::getNumber($min, $max);
@@ -24,9 +19,14 @@ class RandomNumberModel
         return $database->select("SELECT * FROM random_numbers WHERE id = {$id}");
     }
 
-    public static function create(int $number): int
+    private static function create(int $number): int
     {
         global $database;
         return $database->insert('random_numbers', ['number' => $number]);
+    }
+
+    private static function getNumber(int $min = 0, $max = 999999): int
+    {
+        return RAND($min, $max);
     }
 }
