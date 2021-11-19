@@ -33,7 +33,6 @@ class Request
                 throw new \Exception("Middleware {$fullMiddlewareName} not exists!");
             }
         }
-        die();
     }
 
     /**

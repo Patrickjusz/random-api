@@ -33,7 +33,7 @@ class ApiMiddleware implements BaseMiddleware
 
     public static function stop(): ResponseInterface
     {
-        return new JsonResponse(['Bad api key']);
+        new JsonResponse(['Bad api key']);
         die();
     }
 }

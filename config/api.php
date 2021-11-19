@@ -14,6 +14,6 @@ $middlewares = ['ApiMiddleware'];
 
 //API
 //X-Authorization
-define('API_PROTECTION_ENABLE', true);
+define('API_PROTECTION_ENABLE', false);
 define('API_HTTP_HEADER_NAME', 'X-Authorization');
 define('API_KEY', 'test');
