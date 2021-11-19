@@ -13,4 +13,10 @@ class RandomNumberModel
     {
         return ['random' => $this->getNumber($min, $max)];
     }
+
+    public function getById(int $id)
+    {
+        global $database;
+        return $database->select("SELECT * FROM random_numbers WHERE id = {$id}");
+    }
 }
