@@ -2,13 +2,15 @@
 
 namespace App\Routers;
 
+use App\Helpers\Request;
+use App\Helpers\JsonResponse;
 use App\Controllers\RandomNumberController;
 
 class Route
 {
     private $request;
 
-    public function __construct($request)
+    public function __construct(Request $request)
     {
         $this->request = $request;
     }
@@ -20,17 +22,11 @@ class Route
 
         if ($path == 'generate') {
             $controller->index();
-        } else if (strpos($path, 'generate') === 0) {
-            $controller->show($this->getId($path));
-        } else if (strpos($path, 'retrive') === 0) {
-            $controller->show($this->getId($path));
+        } else if (preg_match("/retrive\/(\d+)$/i", $path)) {
+            $id = substr($path, strrpos($path, '/') + 1);
+            $controller->show($id);
         } else {
-            throw new \Exception("Bad route");
+            JsonResponse::error404();
         }
-    }
-
-    private function getId($path): int
-    {
-        return substr($path, strrpos($path, '/') + 1);
     }
 }

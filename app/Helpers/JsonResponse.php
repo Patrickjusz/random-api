@@ -23,4 +23,9 @@ class JsonResponse implements ResponseInterface
     {
         return (int)http_response_code($httpCode);
     }
+
+    public static function error404()
+    {
+        new JsonResponse(['Error 404'], 404);
+    }
 }
