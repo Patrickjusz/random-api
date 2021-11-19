@@ -15,31 +15,22 @@ class Route
 
     public function run()
     {
-        $requestPath = $this->request->getPath();
         $controller = new RandomNumberController($this->request);
+        $path = $this->request->getPath();
 
-        switch ($requestPath) {
-            case 'generate':
-                //POST
-                $controller->index();
-                break;
-            case strpos($requestPath, 'generate') === 0:
-                //GET
-                $id = substr($requestPath, strrpos($requestPath, '/') + 1);
-                if ($id > 0) {
-                    $controller->show($id);
-                }
-                break;
-            case strpos($requestPath, 'retrive') === 0:
-                //GET
-                $id = substr($requestPath, strrpos($requestPath, '/') + 1);
-                if ($id > 0) {
-                    $controller->show($id);
-                }
-                break;
-            default:
-                throw new \Exception("Bad route");
-                break;
+        if ($path == 'generate') {
+            $controller->index();
+        } else if (strpos($path, 'generate') === 0) {
+            $controller->show($this->getId($path));
+        } else if (strpos($path, 'retrive') === 0) {
+            $controller->show($this->getId($path));
+        } else {
+            throw new \Exception("Bad route");
         }
+    }
+
+    private function getId($path): int
+    {
+        return substr($path, strrpos($path, '/') + 1);
     }
 }
