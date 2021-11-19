@@ -13,6 +13,6 @@ define('MIDDLEWARE_PATH', '\App\Middlewares');
 $middlewares = ['ApiMiddleware'];
 
 //API
-define('API_PROTECTION_ENABLE', false);
+define('API_PROTECTION_ENABLE', true);
 define('API_HTTP_HEADER_NAME', 'X-Authorization');
-define('API_KEY', 'test');
+define('API_KEY', 'x24dN2lr7LrQdssd2eOsqhqSIaUarSTdfe2AfpUy94Vv1q');
