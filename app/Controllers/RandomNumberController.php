@@ -19,7 +19,7 @@ class RandomNumberController extends Controller
     public function index(): JsonResponse
     {
         $data = RandomNumberModel::getNumberArray();
-        return new JsonResponse($data);
+        return new JsonResponse($data, 201);
     }
 
     public function show(int $id): JsonResponse
