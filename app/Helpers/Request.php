@@ -8,6 +8,7 @@ use Exception;
 class Request
 {
     private string $path;
+    private string $httpMehtod;
     private array $params;
     private array $headers;
     private array $middlewares;
@@ -18,10 +19,10 @@ class Request
         $this->params = $param ?? [];
         $this->headers = $headers ?? [];
         $this->middlewares = $middlewares;
+        $this->httpMehtod = $_SERVER['REQUEST_METHOD'] ?? '';
 
         $this->runMiddlewers();
     }
-
 
     public function runMiddlewers()
     {
@@ -57,5 +58,21 @@ class Request
     public function getHeaders()
     {
         return $this->headers;
+    }
+
+    /**
+     * Get the value of httpMehtod
+     */
+    public function getHttpMehtod()
+    {
+        return $this->httpMehtod;
+    }
+
+    /**
+     * Check is HTTP POST method
+     */
+    public function isHttpPost(): bool
+    {
+        return  (bool)($this->getHttpMehtod() == 'POST');
     }
 }
