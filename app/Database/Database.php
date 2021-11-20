@@ -23,7 +23,7 @@ final class Database
         switch ($dbDriver) {
             case 'sqlite3':
                 return new SqlLiteDriver($hostOrFile);
-                    break;
+                break;
             // case 'xml':
             //     return new ()
             //     break;
