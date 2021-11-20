@@ -4,7 +4,6 @@ namespace App\Database;
 
 final class Database
 {
-
     /**
      * Data provider (factory method)
      *
