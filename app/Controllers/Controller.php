@@ -6,6 +6,6 @@ use App\Helpers\ResponseInterface;
 
 abstract class Controller
 {
-    abstract function index(): ResponseInterface;
-    abstract function show(int $id): ResponseInterface;
+    abstract public function index(): ResponseInterface;
+    abstract public function show(int $id): ResponseInterface;
 }

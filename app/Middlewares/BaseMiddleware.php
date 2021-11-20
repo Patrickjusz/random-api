@@ -5,7 +5,7 @@ namespace App\Middlewares;
 use App\Helpers\Request;
 use App\Helpers\ResponseInterface;
 
-interface  BaseMiddleware
+interface BaseMiddleware
 {
     public static function run(Request $request): void;
     public static function next(): void;

@@ -23,7 +23,9 @@ class ApiMiddleware implements BaseMiddleware
 
     private static function isValidated($headers): bool
     {
-        return API_PROTECTION_ENABLE == false || (isset($headers[API_HTTP_HEADER_NAME]) && $headers[API_HTTP_HEADER_NAME] == API_KEY);
+        $isEnableProtection = (API_PROTECTION_ENABLE == false);
+        $isCorrectApiKey = (isset($headers[API_HTTP_HEADER_NAME]) && $headers[API_HTTP_HEADER_NAME] == API_KEY);
+        return $isEnableProtection || $isCorrectApiKey;
     }
 
     public static function next(): void
