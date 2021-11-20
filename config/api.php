@@ -2,7 +2,7 @@
 
 //DATABASE CONFIGURATION
 define('DATABASE_TYPE', 'sqlite3');
-define('DATABASE_HOST_OR_FILE',  __DIR__ . '/../data/app.db');
+define('DATABASE_HOST_OR_FILE', __DIR__ . '/../data/app.db');
 
 //CATCH THE REQUEST
 define('REQUEST_URL', filter_var(rtrim($_GET['route'] ?? '', '/'), FILTER_SANITIZE_URL));
