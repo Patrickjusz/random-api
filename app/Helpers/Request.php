@@ -12,7 +12,16 @@ class Request
     private array $params;
     private array $headers;
     private array $middlewares;
-
+    
+    /**
+     * __construct
+     *
+     * @param  string $route
+     * @param  array  $param
+     * @param  array  $headers
+     * @param  array  $middlewares
+     * @return void
+     */
     public function __construct(string $route, array $param, array $headers, array $middlewares = [])
     {
         $this->path = $route ?? '';
@@ -23,8 +32,13 @@ class Request
 
         $this->runMiddlewers();
     }
-
-    public function runMiddlewers()
+    
+    /**
+     * Run all middlewares
+     *
+     * @return void
+     */
+    public function runMiddlewers(): void
     {
         foreach ($this->middlewares as $middlewareName) {
             $fullMiddlewareName = MIDDLEWARE_PATH . '\\' . $middlewareName;
@@ -37,39 +51,52 @@ class Request
     }
 
     /**
-     * Get the value of path
+     * getPath
+     *
+     * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }
 
+       
     /**
-     * Get the value of params
+     * getParams
+     *
+     * @return array
      */
-    public function getParams()
+    public function getParams(): array
     {
         return $this->params;
     }
 
+        
     /**
-     * Get the value of headers
+     * getHeaders
+     *
+     * @return array
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->headers;
     }
 
+    
     /**
-     * Get the value of httpMehtod
+     * Get HTTP method
+     *
+     * @return string
      */
-    public function getHttpMehtod()
+    public function getHttpMehtod(): string
     {
         return $this->httpMehtod;
     }
 
     /**
      * Check is HTTP POST method
+     *
+     * @return bool
      */
     public function isHttpPost(): bool
     {

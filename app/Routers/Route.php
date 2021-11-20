@@ -8,14 +8,19 @@ use App\Controllers\RandomNumberController;
 
 class Route
 {
-    private $request;
+    private Request $request;
 
     public function __construct(Request $request)
     {
         $this->request = $request;
     }
 
-    public function run()
+    /**
+     * Run routing
+     *
+     * @return void
+     */
+    public function run(): void
     {
         $controller = new RandomNumberController($this->request);
         $path = $this->request->getPath();
